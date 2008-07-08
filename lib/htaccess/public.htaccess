@@ -1,0 +1,4 @@
+Options -indexes
+RewriteEngine On
+
+RewriteRule ^(.*)$ cache/%{HTTP_HOST}/%{HTTP:Accept-Language}/$1

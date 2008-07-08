@@ -1,0 +1,7 @@
+Options -indexes
+DirectoryIndex index.html index.php index.xml index.css index.js index.jpg index.gif index.png index.swf index.pdf
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?urlrewrite=$1 [QSA,L]
