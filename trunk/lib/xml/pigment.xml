@@ -1,0 +1,119 @@
+<page>
+	
+	<resource>
+		
+		<root><?php echo $this->root; ?></root>
+		
+		<protocol><?php echo $this->protocol; ?></protocol>
+		
+		<?php if ( isset( $this->subdomain ) ) echo "<subdomain>$this->subdomain</subdomain>"; ?>
+		
+		<domain><?php echo $this->domain; ?></domain>
+		
+		<port><?php echo $this->port; ?></port>
+		
+		<host><?php echo $this->host; ?></host>
+		
+		<directory><?php echo $this->directory; ?></directory>
+		
+		<?php if ( isset( $this->querystring ) ) echo "<querystring><data><![CDATA[$this->querystring]]></data></querystring>"; ?>
+		
+		<requesttype><?php echo $this->requesttype; ?></requesttype>
+		
+		<?php if ( isset( $this->extension ) ) echo "<extension>$this->extension</extension>"; ?>
+		
+		<header><?php echo $this->header; ?></header>
+		
+		<?php if ( isset( $this->mediatype ) ) echo "<mediatype>$this->mediatype</mediatype>"; ?>
+		
+		<uri><data><![CDATA[<?php echo $this->uri; ?>]]></data></uri>
+		
+		<space><?php echo $this->space; ?></space>
+		
+		<spaceversion><?php echo $this->spaceversion; ?></spaceversion>
+		
+		<version><?php echo $this->version; ?></version>
+		
+		<acceptlanguage><?php echo $this->acceptlanguage; ?></acceptlanguage>
+		
+		<?php if ( isset( $this->year ) ) echo "<year>$this->year</year>"; ?>
+		
+		<?php if ( isset( $this->day ) ) echo "<day>$this->day</day>"; ?>
+		
+		<?php if ( isset( $this->page ) ) echo "<page>$this->page</page>"; ?>
+		
+		<?php if ( isset( $this->pagetype ) ) echo "<pagetype>$this->pagetype</pagetype>"; ?>
+		
+		<?php if ( isset( $this->stub ) ) echo "<stub>$this->stub</stub>"; ?>
+		
+		<?php if ( isset( $this->libraries ) ) echo "<libraries>$this->libraries</libraries>"; ?>
+		
+		<?php if ( isset( $this->directives ) ) echo "<directives>$this->directives</directives>"; ?>
+		
+		<?php if ( isset( $this->meta[ 'title' ] ) ) $v = $this->meta[ 'title' ]; echo "<page-title>$v</page-title>"; ?>
+		
+		<?php if ( isset( $this->meta[ 'author' ] ) ) $v = $this->meta[ 'author' ]; echo "<page-author>$v</page-author>"; ?>
+		
+		<?php if ( isset( $this->meta[ 'description' ] ) ) $v = $this->meta[ 'description' ]; echo "<page-description>$v</page-description>"; ?>
+		
+		<?php if ( isset( $this->meta[ 'keywords' ] ) ) $v = $this->meta[ 'keywords' ]; echo "<page-keywords>$v</page-keywords>"; ?>
+		
+		<?php if ( isset( $this->meta[ 'icon' ] ) ) $v = $this->meta[ 'icon' ]; echo "<page-icon>$v</page-icon>"; ?>
+		
+		<?php if ( isset( $this->meta[ 'privacy' ] ) ) $v = $this->meta[ 'privacy' ]; echo "<page-privacy>$v</page-privacy>"; ?>
+		
+		<?php
+		
+			if ( isset( $this->parameter ) && count( $this->parameter ) > 0 ) {
+			
+				echo '<parameter>';
+				
+				foreach ( $this->parameter as $key => $value ) { echo "<$key>$value</$key>"; }
+				
+				echo '</parameter>';
+			
+			}
+		
+		?>
+		
+	</resource>
+		
+	<?php 
+		
+		if ( count( $this->content ) > 0 ) {
+		
+			echo '<content>';
+			
+			foreach ( $this->content as $key => $value ) { 
+
+				$op = '';
+
+				$op .= "<$key>";
+
+				foreach ( $value as $k => $v ) {
+
+					$op .= "<item>"; 
+
+					foreach ( $value[$k] as $kk => $vv ) {
+
+						$op .= "<$kk><![CDATA[" . $vv . "]]></$kk>";
+
+					}
+
+					$op .= "</item>"; 
+
+				}
+
+				$op .= "</$key>";
+
+				echo $op;
+
+			}
+			
+			echo '</content>';
+		
+		} 
+			
+	?>
+	
+</page>
