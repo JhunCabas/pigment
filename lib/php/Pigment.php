@@ -69,7 +69,7 @@
 		public function log()
 		{
 			
-			//
+			// log hit, crunch later: datetime | space | page | ip | useragent | os | acceptlanguage | referrer | uniqueid
 			
 		}
 		
@@ -129,6 +129,22 @@
 					$proc->importStyleSheet( $xsldoc );
 					
 					$output = $proc->transformToXML( $xmldoc );
+					
+					$selector = '</html>';
+					
+					if ( strstr( $output, $selector ) ) {
+						
+						$exp = explode( $selector, $output );
+						
+						$uri = $_SERVER[ 'REQUEST_URI' ];
+						
+						$delim = strstr( $uri, '?' ) ? '&' : '?';
+						
+						$track = '<object type="text/html" width="1" height="1" data="'.$uri.$delim.'log"></object>';
+						
+						$output = implode( $track . '</html>', $exp );
+						
+					}
 					
 				} else {
 					
