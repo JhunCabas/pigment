@@ -1,0 +1,1 @@
+Pigment is a WAMI, web asset management interface
